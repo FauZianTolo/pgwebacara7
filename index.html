@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GIS Web Application with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* Set the map container size */
+        #map {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map("map").setView([-7.76591, 110.37742], 12);
+
+        // Add a tile layer (OpenStreetMap)
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+                '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        // Add a marker
+        var marker = L.marker([-7.774714, 110.374403]).addTo(map);
+        marker.bindPopup(" Sekolah Vokasi Universitas Gadjah Mada").openPopup();
+
+        var marker = L.marker([-7.790322, 110.33626]).addTo(map);
+        marker.bindPopup("SD Kanoman").openPopup();
+
+        var marker = L.marker([-7.813776, 110.362897]).addTo(map);
+        marker.bindPopup("Plengkung Gading").openPopup();
+
+        var marker = L.marker([-7.801841, 110.369575]).addTo(map);
+        marker.bindPopup("Klenteng Fuk Ling Miau").openPopup();
+
+        var marker = L.marker([-7.783901, 110.357446]).addTo(map);
+        marker.bindPopup("Universitas Janabadra").openPopup();
+
+        // Circle
+        var circle = L.circle([-7.800664, 110.352001], {
+            color: "green",
+            fillColor: "purple",
+            fillOpacity: 0.5,
+            radius: 1500,
+        }).addTo(map);
+
+        var polygon = L.polygon([
+            [-7.821616, 110.32505],
+            [-7.826548, 110.353203],
+            [-7.800868, 110.329857]
+        ]).addTo(map);
+        var polygon = L.polygon([
+            [-7.826582, 110.353323],
+            [-7.806684, 110.375467],
+            [-7.827279, 110.375776]
+        ]).addTo(map);
+        var polygon = L.polygon([
+            [-7.801004, 110.377321],
+            [-7.774233, 110.361168],
+            [-7.776547, 110.380154]
+        ]).addTo(map);
+        var polygon = L.polygon([
+            [-7.774336, 110.360498],
+            [-7.780033, 110.334835],
+            [-7.763909, 110.335951]
+        ]).addTo(map);
+        var polygon = L.polygon([
+            [-7.800341, 110.329857],
+            [-7.785068, 110.331076],
+            [-7.790085, 110.309017]
+        ]).addTo(map);
+
+        function onMapClick(e) {
+            alert("You clicked the map at " + e.latlng);
+        }
+
+        map.on('click', onMapClick);
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+
+    </script>
+</body>
+
+</html>
